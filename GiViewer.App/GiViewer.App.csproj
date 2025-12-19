@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="res\types\byte_array.png" />
+    <None Remove="res\types\double.png" />
+    <None Remove="res\types\float.png" />
+    <None Remove="res\types\integer.png" />
+    <None Remove="res\types\int_array.png" />
+    <None Remove="res\types\list.png" />
+    <None Remove="res\types\object.png" />
+    <None Remove="res\types\string.png" />
+    <None Remove="res\types\unknown.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="res\types\byte_array.png" />
+    <EmbeddedResource Include="res\types\double.png" />
+    <EmbeddedResource Include="res\types\float.png" />
+    <EmbeddedResource Include="res\types\integer.png" />
+    <EmbeddedResource Include="res\types\int_array.png" />
+    <EmbeddedResource Include="res\types\list.png" />
+    <EmbeddedResource Include="res\types\object.png" />
+    <EmbeddedResource Include="res\types\string.png" />
+    <EmbeddedResource Include="res\types\unknown.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
