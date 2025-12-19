@@ -117,32 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="TypeIcon.ByteArray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Types\byte_array.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dialog.Button.Abort" xml:space="preserve">
+    <value>中止</value>
   </data>
-  <data name="TypeIcon.Double" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Types\double.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dialog.Button.Cancel" xml:space="preserve">
+    <value>取消</value>
   </data>
-  <data name="TypeIcon.Float" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Types\float.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dialog.Button.Continue" xml:space="preserve">
+    <value>继续</value>
   </data>
-  <data name="TypeIcon.IntArray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Types\int_array.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dialog.Button.Discard" xml:space="preserve">
+    <value>丢弃</value>
   </data>
-  <data name="TypeIcon.Integer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Types\integer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dialog.Button.Ignore" xml:space="preserve">
+    <value>忽略</value>
   </data>
-  <data name="TypeIcon.List" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Types\list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dialog.Button.No" xml:space="preserve">
+    <value>否</value>
   </data>
-  <data name="TypeIcon.Object" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Types\object.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dialog.Button.Ok" xml:space="preserve">
+    <value>确认</value>
   </data>
-  <data name="TypeIcon.String" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Types\string.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dialog.Button.Retry" xml:space="preserve">
+    <value>重试</value>
   </data>
-  <data name="TypeIcon.Unknown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Types\unknown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dialog.Button.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Dialog.Button.Try" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="Dialog.Button.Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Dialog.Title.Missing" xml:space="preserve">
+    <value>标题缺失</value>
+  </data>
+  <data name="Menu.Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Menu.File" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="Menu.File.Exit" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Menu.File.New" xml:space="preserve">
+    <value>新建</value>
+  </data>
+  <data name="Menu.File.Open" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="Menu.File.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Menu.File.SaveAs" xml:space="preserve">
+    <value>另存为</value>
   </data>
 </root>

@@ -6,8 +6,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Fluent;component/Themes/Fluent.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Fluent;component/Themes/Fluent.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            
+            <!-- 本地化字典 -->
+            <local:LocalizationProvider x:Key="lang"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
