@@ -5,6 +5,9 @@
     <Compile Update="Controls\ContentDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\EditorPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Languages\Strings.resx">
