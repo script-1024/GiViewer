@@ -4,9 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GiViewer.App"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow}"
         mc:Ignorable="d"
-        Title="GiViewer" MinHeight="240" MinWidth="320">
-    <StackPanel>
+        Title="GiViewer"
+        MinHeight="240"
+        MinWidth="320"
+        Closing="Window_Closing"
+        SizeChanged="Window_SizeChanged"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Name="XamlRoot">
         
-    </StackPanel>
+        <!-- 对话框 -->
+        <Grid Name="GrayMask" Visibility="Hidden">
+            <Rectangle Name="GrayMaskRect" Fill="{DynamicResource SmokeFillColorDefaultBrush}" MouseDown="CloseDialog"/>
+            <Border Name="ContentBorder"
+                    BorderThickness="1"
+                    BorderBrush="{DynamicResource SurfaceStrokeColorDefaultBrush}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    CornerRadius="16">
+                
+                <ContentPresenter Name="DialogWrapper" Content="{Binding Dialog}"/>
+            </Border>
+        </Grid>
+    </Grid>
 </Window>
