@@ -22,7 +22,7 @@ public class BytesNode : ILengthNode
         return Varint.GetSize(id) + Varint.GetSize(Data.Length) + Data.Length;
     }
 
-    public static INode Read(ref BufferReader reader, int totalSize)
+    public static BytesNode Read(ref BufferReader reader, int totalSize)
     {
         var span = reader.ReadSpan(totalSize);
         return new BytesNode(span.ToArray());

@@ -1,6 +1,5 @@
 using GiViewer.Core.Serialization;
 using System.Collections;
-using System.Xml.Linq;
 
 namespace GiViewer.Core.Types;
 
@@ -56,13 +55,6 @@ public class ListNode : ICollectionNode
         if (Packed == false || totalSize == 0) return totalSize;
         return Varint.GetSize(id) + Varint.GetSize(totalSize) + totalSize;
     }
-
-    /// <summary>
-    /// <see cref="ListNode"/> 无法实现此方法
-    /// </summary>
-    /// <exception cref="NotSupportedException"/>
-    public static INode Read(ref BufferReader reader, int totalSize)
-        => throw new NotSupportedException();
 
     public void Write(ref BufferWriter writer, int id)
     {

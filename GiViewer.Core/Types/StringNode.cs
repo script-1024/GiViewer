@@ -22,7 +22,7 @@ public sealed class StringNode : ILengthNode
         return Varint.GetSize(id) + Varint.GetSize(length) + length;
     }
 
-    public static INode Read(ref BufferReader reader, int totalSize) => new StringNode(reader.ReadString(totalSize));
+    public static StringNode Read(ref BufferReader reader, int totalSize) => new StringNode(reader.ReadString(totalSize));
 
     public void Write(ref BufferWriter writer, int id)
     {

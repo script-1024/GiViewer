@@ -35,13 +35,6 @@ public interface INode
 public interface IScalarNode : INode
 {
     /// <summary>
-    /// 从缓冲区读取一个节点
-    /// </summary>
-    /// <param name="reader"></param>
-    /// <returns></returns>
-    public abstract static INode Read(ref BufferReader reader);
-
-    /// <summary>
     /// 将节点写入缓冲区中
     /// </summary>
     public void Write(ref BufferWriter writer);
@@ -52,11 +45,6 @@ public interface IScalarNode : INode
 /// </summary>
 public interface ILengthNode : INode
 {
-    /// <summary>
-    /// 从缓冲区读取一个指定长度的节点
-    /// </summary>
-    public abstract static INode Read(ref BufferReader reader, int totalSize);
-
     /// <summary>
     /// 将节点写入缓冲区中
     /// </summary>

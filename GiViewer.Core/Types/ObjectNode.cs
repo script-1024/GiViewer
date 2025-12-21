@@ -46,14 +46,7 @@ public sealed class ObjectNode : ICollectionNode, IEnumerable<INode>
         return Varint.GetSize(id) + Varint.GetSize(totalSize) + totalSize;
     }
 
-    /// <summary>
-    /// 尝试读取一个对象节点，若失败则返回一个 <see cref="BytesNode"/>
-    /// </summary>
-    /// <returns>
-    /// 成功 - <see cref="ObjectNode"/><br/>
-    /// 失败 - <see cref="BytesNode"/>
-    /// </returns>
-    public static INode Read(ref BufferReader reader, int totalSize)
+    public static ObjectNode Read(ref BufferReader reader, int totalSize)
     {
         var root = new ObjectNode([]);
         int start = reader.Position, end = start + totalSize;
@@ -75,11 +68,7 @@ public sealed class ObjectNode : ICollectionNode, IEnumerable<INode>
             }
 
             // 无效类型
-            if (tag.Type != WireType.Length)
-            {
-                reader.Seek(start, SeekOrigin.Begin);
-                return BytesNode.Read(ref reader, totalSize);
-            }
+            if (tag.Type != WireType.Length) throw new InvalidDataException("文件数据异常");
 
             int length = Varint.Read<int>(ref reader);
 

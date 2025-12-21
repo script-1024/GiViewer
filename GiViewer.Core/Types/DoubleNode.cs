@@ -19,7 +19,7 @@ public sealed class DoubleNode : IScalarNode
         return (id == 0 ? 0 : Varint.GetSize(id)) + 8;
     }
 
-    public static INode Read(ref BufferReader reader) => new DoubleNode(reader.ReadDouble());
+    public static DoubleNode Read(ref BufferReader reader) => new DoubleNode(reader.ReadDouble());
 
     public void Write(ref BufferWriter writer) => writer.WriteDouble(value);
 }
