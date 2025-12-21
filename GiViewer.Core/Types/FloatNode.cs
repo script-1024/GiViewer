@@ -19,5 +19,7 @@ public sealed class FloatNode : IScalarNode
         return (id == 0 ? 0 : Varint.GetSize(id)) + 4;
     }
 
+    public static INode Read(ref BufferReader reader) => new FloatNode(reader.ReadFloat());
+
     public void Write(ref BufferWriter writer) => writer.WriteFloat(value);
 }

@@ -20,7 +20,7 @@ public sealed class IntegerNode : IScalarNode
     public void SetValue(ulong value) => this.value = value;
 
     public T GetValue<T>(bool zigzag = false) where T : unmanaged
-        => Varint.CastTo<T>(zigzag ? (ulong)Varint.ZigZagDecode(value) : value);
+        => Varint.Cast<T>(zigzag ? (ulong)Varint.ZigZagDecode(value) : value);
 
     public INode Clone() => new IntegerNode(value);
 
@@ -29,6 +29,8 @@ public sealed class IntegerNode : IScalarNode
         if (value == 0) return 0;
         return (id == 0 ? 0 : Varint.GetSize(id)) + Varint.GetSize(value);
     }
+
+    public static INode Read(ref BufferReader reader) => new IntegerNode(Varint.Read<ulong>(ref reader));
 
     public void Write(ref BufferWriter writer) => Varint.Write(ref writer, value);
 }

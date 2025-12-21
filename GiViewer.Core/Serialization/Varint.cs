@@ -4,13 +4,13 @@ namespace GiViewer.Core.Serialization;
 
 public static class Varint
 {
-    public static object CastTo(Type type, ulong varint)
+    private static object Cast(Type type, ulong varint)
     {
         type = Nullable.GetUnderlyingType(type) ?? type;
         if (type.IsEnum)
         {
             object fallback = Activator.CreateInstance(type)!;
-            object value = CastTo(Enum.GetUnderlyingType(type), varint);
+            object value = Cast(Enum.GetUnderlyingType(type), varint);
             return Enum.IsDefined(type, value) ? Enum.ToObject(type, value) : fallback;
         }
         return type switch
@@ -28,8 +28,47 @@ public static class Varint
         };
     }
 
-    public static T CastTo<T>(ulong varint) where T : unmanaged
-        => (T)CastTo(typeof(T), varint);
+    public static T Cast<T>(ulong varint) where T : unmanaged
+        => (T)Cast(typeof(T), varint);
+
+    private static bool TryCast(Type type, ulong varint, out object result)
+    {
+        type = Nullable.GetUnderlyingType(type) ?? type;
+        result = Activator.CreateInstance(type)!; // 默认值
+        if (type.IsEnum)
+        {
+            if (!TryCast(Enum.GetUnderlyingType(type), varint, out object retval)) return false;
+            if (!Enum.IsDefined(type, retval)) return false;
+            result = Enum.ToObject(type, retval);
+            return true;
+        }
+
+        object? tmp = type switch
+        {
+            var t when t == typeof(bool) => varint != 0,
+            var t when t == typeof(sbyte) => (sbyte)varint,
+            var t when t == typeof(byte) => (byte)varint,
+            var t when t == typeof(short) => (short)varint,
+            var t when t == typeof(ushort) => (ushort)varint,
+            var t when t == typeof(int) => (int)varint,
+            var t when t == typeof(uint) => (uint)varint,
+            var t when t == typeof(long) => (long)varint,
+            var t when t == typeof(ulong) => varint,
+            _ => null
+        };
+
+        if (tmp is null) return false;
+        result = tmp;
+        return true;
+    }
+
+    public static bool TryCast<T>(ulong varint, out T result) where T : unmanaged
+    {
+        result = default;
+        if (!TryCast(typeof(T), varint, out object retval)) return false;
+        result = (T)retval;
+        return true;
+    }
 
     private static ulong Read(ref BufferReader reader)
     {
@@ -44,7 +83,25 @@ public static class Varint
     }
 
     public static T Read<T>(ref BufferReader reader) where T : unmanaged
-        => CastTo<T>(Read(ref reader));
+        => Cast<T>(Read(ref reader));
+
+    public static bool TryRead<T>(ref BufferReader reader, out T result) where T : unmanaged
+    {
+        ulong value = 0;
+        result = default;
+        for (int i = 0; i < 10; i++)
+        {
+            byte data = reader.ReadByte();
+            value |= (ulong)(data & 0x7F) << (i * 7);
+            if ((data & 0x80) == 0)
+            {
+                if (!TryCast(value, out T retval)) return false;
+                result = retval;
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static void Write(ref BufferWriter writer, ulong value)
     {

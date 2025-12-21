@@ -3,7 +3,7 @@ using System.Text;
 
 namespace GiViewer.Core.Types;
 
-public sealed class StringNode : IScalarNode
+public sealed class StringNode : ILengthNode
 {
     private string value = string.Empty;
     internal StringNode(string value) => this.value = value;
@@ -22,5 +22,11 @@ public sealed class StringNode : IScalarNode
         return Varint.GetSize(id) + Varint.GetSize(length) + length;
     }
 
-    public void Write(ref BufferWriter writer) => writer.WriteString(value);
+    public static INode Read(ref BufferReader reader, int totalSize) => new StringNode(reader.ReadString(totalSize));
+
+    public void Write(ref BufferWriter writer, int id)
+    {
+        Varint.Write(ref writer, id);
+        writer.WriteString(value);
+    }
 }

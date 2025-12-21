@@ -46,6 +46,67 @@ public sealed class ObjectNode : ICollectionNode, IEnumerable<INode>
         return Varint.GetSize(id) + Varint.GetSize(totalSize) + totalSize;
     }
 
+    /// <summary>
+    /// 尝试读取一个对象节点，若失败则返回一个 <see cref="BytesNode"/>
+    /// </summary>
+    /// <returns>
+    /// 成功 - <see cref="ObjectNode"/><br/>
+    /// 失败 - <see cref="BytesNode"/>
+    /// </returns>
+    public static INode Read(ref BufferReader reader, int totalSize)
+    {
+        var root = new ObjectNode([]);
+        int start = reader.Position, end = start + totalSize;
+
+        while (reader.Position < end)
+        {
+            ProtoTag tag = Varint.Read<int>(ref reader);
+            switch (tag.Type)
+            {
+                case WireType.Varint:
+                    root[tag.Id] = IntegerNode.Read(ref reader);
+                    continue;
+                case WireType.Fixed32:
+                    root[tag.Id] = FloatNode.Read(ref reader);
+                    continue;
+                case WireType.Fixed64:
+                    root[tag.Id] = DoubleNode.Read(ref reader);
+                    continue;
+            }
+
+            // 无效类型
+            if (tag.Type != WireType.Length)
+            {
+                reader.Seek(start, SeekOrigin.Begin);
+                return BytesNode.Read(ref reader, totalSize);
+            }
+
+            int length = Varint.Read<int>(ref reader);
+
+            if (length == 0)
+            {
+                root.TryAdd(tag.Id, new ObjectNode([])); // null 节点
+                continue;
+            }
+
+            // 我们需要判断 WireType.Length 具体是什么类型的数据
+            // 无法主动读取 ListNode，我们无法事先得知哪些编号会重复出现，因此这部分由 TryAdd 负责处理
+            if (SerializationHelper.IsUtf8String(reader, length))
+            {
+                root.TryAdd(tag.Id, StringNode.Read(ref reader, length));
+            }
+            else if (SerializationHelper.IsObject(reader, length))
+            {
+                root.TryAdd(tag.Id, ObjectNode.Read(ref reader, length));
+            }
+            else
+            {
+                root.TryAdd(tag.Id, BytesNode.Read(ref reader, length));
+            }
+        }
+        return root;
+    }
+
     public void Write(ref BufferWriter writer, int id)
     {
         if (id > 0)
@@ -57,14 +118,14 @@ public sealed class ObjectNode : ICollectionNode, IEnumerable<INode>
         foreach (var (key, value) in data)
         {
             if (size[key] == 0) continue;
-            if (value is IScalarNode scalar)
+            if (value is IScalarNode snode)
             {
                 Varint.Write(ref writer, key);
-                scalar.Write(ref writer);
+                snode.Write(ref writer);
             }
-            else if (value is ICollectionNode collection)
+            else if (value is ILengthNode lnode)
             {
-                collection.Write(ref writer, key);
+                lnode.Write(ref writer, key);
             }
         }
     }

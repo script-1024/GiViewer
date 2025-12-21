@@ -1,4 +1,5 @@
 using GiViewer.Core.Serialization;
+using System.Collections;
 using System.Xml.Linq;
 
 namespace GiViewer.Core.Types;
@@ -56,6 +57,13 @@ public class ListNode : ICollectionNode
         return Varint.GetSize(id) + Varint.GetSize(totalSize) + totalSize;
     }
 
+    /// <summary>
+    /// <see cref="ListNode"/> 无法实现此方法
+    /// </summary>
+    /// <exception cref="NotSupportedException"/>
+    public static INode Read(ref BufferReader reader, int totalSize)
+        => throw new NotSupportedException();
+
     public void Write(ref BufferWriter writer, int id)
     {
         if (totalSize == 0) return;
@@ -75,12 +83,8 @@ public class ListNode : ICollectionNode
         for (int i = 0; i < data.Count; i++)
         {
             if (size[i] == 0) continue;
-            if (data[i] is ObjectNode obj) obj.Write(ref writer, id);
-            else if (data[i] is StringNode str)
-            {
-                Varint.Write(ref writer, id);
-                str.Write(ref writer);
-            }
+            if (data[i] is ILengthNode node)
+                node.Write(ref writer, id);
         }
     }
 
@@ -99,4 +103,7 @@ public class ListNode : ICollectionNode
         data.RemoveAt(index);
         return true;
     }
+
+    public IEnumerator<INode> GetEnumerator() => data.GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

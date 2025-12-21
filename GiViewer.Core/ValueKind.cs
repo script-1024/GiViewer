@@ -2,11 +2,11 @@ namespace GiViewer.Core;
 
 public enum ValueKind
 {
-    Unknown = 0,
-    Integer = 1,
-    Float = 2,
-    Double = 3,
-    String = 4,
-    Object = 5,
-    List = 6,
+    Integer = 0,
+    Float = 1,
+    Double = 2,
+    String = 3,
+    Object = 4,
+    Bytes = 5,
+    List = 6
 }
