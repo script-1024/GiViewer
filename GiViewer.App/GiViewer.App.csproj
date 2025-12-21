@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -9,27 +9,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Types\byte_array.png" />
+    <None Remove="Resources\Types\bytes.png" />
     <None Remove="Resources\Types\double.png" />
     <None Remove="Resources\Types\float.png" />
     <None Remove="Resources\Types\integer.png" />
-    <None Remove="Resources\Types\int_array.png" />
     <None Remove="Resources\Types\list.png" />
     <None Remove="Resources\Types\object.png" />
     <None Remove="Resources\Types\string.png" />
-    <None Remove="Resources\Types\unknown.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Types\byte_array.png" />
+    <EmbeddedResource Include="Resources\Types\bytes.png" />
     <EmbeddedResource Include="Resources\Types\double.png" />
     <EmbeddedResource Include="Resources\Types\float.png" />
     <EmbeddedResource Include="Resources\Types\integer.png" />
-    <EmbeddedResource Include="Resources\Types\int_array.png" />
     <EmbeddedResource Include="Resources\Types\list.png" />
     <EmbeddedResource Include="Resources\Types\object.png" />
     <EmbeddedResource Include="Resources\Types\string.png" />
-    <EmbeddedResource Include="Resources\Types\unknown.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GiViewer.Core\GiViewer.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

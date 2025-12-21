@@ -63,9 +63,9 @@ namespace GiViewer.App.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap TypeIcon_ByteArray {
+        public static System.Drawing.Bitmap TypeIcon_Bytes {
             get {
-                object obj = ResourceManager.GetObject("TypeIcon.ByteArray", resourceCulture);
+                object obj = ResourceManager.GetObject("TypeIcon.Bytes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,16 +86,6 @@ namespace GiViewer.App.Properties {
         public static System.Drawing.Bitmap TypeIcon_Float {
             get {
                 object obj = ResourceManager.GetObject("TypeIcon.Float", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap TypeIcon_IntArray {
-            get {
-                object obj = ResourceManager.GetObject("TypeIcon.IntArray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,16 +126,6 @@ namespace GiViewer.App.Properties {
         public static System.Drawing.Bitmap TypeIcon_String {
             get {
                 object obj = ResourceManager.GetObject("TypeIcon.String", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap TypeIcon_Unknown {
-            get {
-                object obj = ResourceManager.GetObject("TypeIcon.Unknown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
