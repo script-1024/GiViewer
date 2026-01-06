@@ -4,23 +4,21 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:lang="clr-namespace:GiViewer.App.Resources.Languages"
-      xmlns:app="clr-namespace:GiViewer.App"
-      d:DataContext="{d:DesignInstance Type=app:LocalizationProvider}"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:ctrl="clr-namespace:GiViewer.App.Controls"
+      mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800"
       Title="EditorPage">
 
     <StackPanel>
-        <Menu Name="Menu">
-            <MenuItem Header="{Binding Source={StaticResource lang}, Path=[Menu.File]}">
-                <MenuItem Tag="File.New" Click="MenuItem_Click" Header="{Binding Source={StaticResource lang}, Path=[Menu.File.New]}"/>
-                <MenuItem Tag="File.Open" Click="MenuItem_Click" Header="{Binding Source={StaticResource lang}, Path=[Menu.File.Open]}"/>
-                <MenuItem Tag="File.Save" Click="MenuItem_Click" Header="{Binding Source={StaticResource lang}, Path=[Menu.File.Save]}"/>
-                <MenuItem Tag="File.SaveAs" Click="MenuItem_Click" Header="{Binding Source={StaticResource lang}, Path=[Menu.File.SaveAs]}"/>
+        <Menu Name="Menu" Margin="6, 0, 6, 0">
+            <MenuItem Tag="Menu.File">
+                <MenuItem Tag="Menu.File.New" Click="MenuItem_Click"/>
+                <MenuItem Tag="Menu.File.Open" Click="MenuItem_Click"/>
+                <MenuItem Tag="Menu.File.Save" Click="MenuItem_Click"/>
+                <MenuItem Tag="Menu.File.SaveAs" Click="MenuItem_Click"/>
                 <Separator/>
-                <MenuItem Tag="File.Exit" Click="MenuItem_Click" Header="{Binding Source={StaticResource lang}, Path=[Menu.File.Exit]}"/>
+                <MenuItem Tag="Menu.File.Exit" Click="MenuItem_Click"/>
             </MenuItem>
         </Menu>
-        <TreeView Name="TreeView"/>
+        <ctrl:Editor x:Name="EditorUI"/>
     </StackPanel>
 </Page>
