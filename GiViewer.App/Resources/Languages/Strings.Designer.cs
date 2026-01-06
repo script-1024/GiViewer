@@ -230,5 +230,23 @@ namespace GiViewer.App.Resources.Languages {
                 return ResourceManager.GetString("Menu.File.SaveAs", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 GI Files 的本地化字符串。
+        /// </summary>
+        public static string Misc_GiFiles {
+            get {
+                return ResourceManager.GetString("Misc.GiFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 (Root Node) 的本地化字符串。
+        /// </summary>
+        public static string Node_Root {
+            get {
+                return ResourceManager.GetString("Node.Root", resourceCulture);
+            }
+        }
     }
 }
