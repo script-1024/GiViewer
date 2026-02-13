@@ -241,7 +241,7 @@ namespace GiViewer.App.Resources.Languages {
         }
         
         /// <summary>
-        ///   查找类似 (root) 的本地化字符串。
+        ///   查找类似 Root 的本地化字符串。
         /// </summary>
         public static string Node_Root {
             get {

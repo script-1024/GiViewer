@@ -27,7 +27,7 @@
                     VerticalAlignment="Center"
                     CornerRadius="16">
                 
-                <ContentPresenter Name="DialogWrapper" Content="{Binding Dialog}"/>
+                <ContentPresenter Name="DialogWrapper"/>
             </Border>
         </Grid>
     </Grid>
