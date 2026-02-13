@@ -1,14 +1,14 @@
 namespace GiViewer.Core.Serialization;
 
-public static class SerializationHelper
+internal static class SerializationHelper
 {
     public static bool IsUtf8String(BufferReader reader, int length)
     {
         int end = reader.Position + length;
         while (reader.Position < end)
         {
-            byte b = reader.ReadByte();
-            int needed = 0, codePoint = 0;
+            if (!reader.TryReadByte(out byte b)) return false;
+            int needed, codePoint;
 
             // 1-byte
             if ((b & 0x80) == 0)
@@ -36,12 +36,12 @@ public static class SerializationHelper
             else return false; // Unity 不支持代理对，因此 0xF0 ~ 0xFF 首字节无效
 
             // 若长度信息不匹配
-            if (reader.Position + needed >= end) return false;
+            if (reader.Position + needed > end) return false;
 
             // 累积后续字节
             for (int i = 0; i < needed; i++)
             {
-                byte c = reader.ReadByte();
+                if (reader.TryReadByte(out byte c)) return false;
                 if ((c & 0xC0) != 0x80) return false; // 后续字节必须以 0b10xxxxxx 开头
                 codePoint = (codePoint << 6) | (c & 0x3F);
             }
@@ -78,6 +78,7 @@ public static class SerializationHelper
                     continue;
                 case WireType.Length:
                     if (!Varint.TryRead(ref reader, out int size)) return false;
+                    if (!reader.Available(size)) return false;
                     reader.Seek(size, SeekOrigin.Current);
                     continue;
                 default:

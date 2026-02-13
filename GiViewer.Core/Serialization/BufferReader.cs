@@ -27,11 +27,6 @@ public ref struct BufferReader(ReadOnlySpan<byte> buffer)
     /// 获取当前读取位置的索引。
     /// </summary>
     public readonly int Position => pos;
-    
-    /// <summary>
-     /// 检查是否仍有数据可供读取。
-     /// </summary>
-    public readonly bool Available() => Available(1);
 
     /// <summary>
     /// 检查是否仍有足够长的数据可供读取。
@@ -88,14 +83,27 @@ public ref struct BufferReader(ReadOnlySpan<byte> buffer)
         => new(buffer.Slice(start, length));
 
     /// <summary>
-    /// 从缓冲区读取一个字节。
+    /// 尝试从缓冲区读取一个字节。
     /// </summary>
-    /// <exception cref="EndOfStreamException"></exception>
-    public byte ReadByte()
+    public bool TryReadByte(out byte data)
     {
-        EnsureAvailable(sizeof(byte));
-        return buffer[pos++];
+        if (Available(sizeof(byte)))
+        {
+            data = buffer[pos++];
+            return true;
+        }
+        data = 0;
+        return false;
     }
+
+    /// <summary>
+    /// 立即从缓冲区取得一个字节。
+    /// </summary>
+    /// <remarks>
+    /// 呼叫此方法前必须确保缓冲区仍有可用数据！<br/>
+    /// 按理说你先前应该已呼叫过 <see cref="TryReadByte"/> 验证过数据的合法性，故此处不再重复检查
+    /// </remarks>
+    public byte ReadByte() => buffer[pos++];
 
     /// <summary>
     /// 从缓冲区读取一串字节序列。

@@ -14,20 +14,23 @@ public class GiFile
     public static GiFile ReadFromFile(string path)
     {
         ReadOnlySpan<byte> data = File.ReadAllBytes(path);
-        if (data.Length < 24) throw new InvalidDataException("文件过小，无法读取数据。");
+        if (data.Length < 24)
+            throw new InvalidDataException("文件过小，无法读取数据。");
 
         var reader = new BufferReader(data);
 
         // 文件大小
         int fileSize = reader.ReadInt32BE();
-        if (fileSize + 4 != data.Length) throw new InvalidDataException("文件大小与头部信息不符。");
+        if (fileSize + 4 != data.Length)
+            throw new InvalidDataException("文件大小与头部信息不符。");
 
         // 版本编号
         int version = reader.ReadInt32BE();
 
         // 头部魔数
         int headMagic = reader.ReadInt32BE();
-        if (headMagic != HeadMagicNumber) throw new InvalidDataException("文件头部魔数不匹配，可能不是有效的 GI 文件。");
+        if (headMagic != HeadMagicNumber)
+            throw new InvalidDataException("文件头部魔数不匹配，可能不是有效的 GI 文件。");
 
         // 文件类型
         FileType type = reader.ReadInt32BE() switch
@@ -41,21 +44,24 @@ public class GiFile
 
         // 内容长度
         int length = reader.ReadInt32BE();
-        if (length + 24 != data.Length) throw new InvalidDataException("内容长度与文件大小不符。");
+        if (length + 24 != data.Length)
+            throw new InvalidDataException("内容长度与文件大小不符。");
 
         // 尾部魔数
         int current = reader.Position;
         reader.Seek(-4, SeekOrigin.End);
         int tailMagic = reader.ReadInt32BE();
-        if (tailMagic != TailMagicNumber) throw new InvalidDataException("文件尾部魔数不匹配，可能不是有效的 GI 文件。");
+        if (tailMagic != TailMagicNumber)
+            throw new InvalidDataException("文件尾部魔数不匹配，可能不是有效的 GI 文件。");
 
         reader = reader.Slice(current, length);
-        var root = ObjectNode.Read(ref reader, length);
+        if (!SerializationHelper.IsObject(reader, length))
+            throw new InvalidDataException("文件数据异常");
 
         return new GiFile
         {
             Type = type,
-            RootNode = root,
+            RootNode = ObjectNode.Read(ref reader, length),
             Version = version
         };
     }

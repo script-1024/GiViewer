@@ -91,7 +91,7 @@ public static class Varint
         result = default;
         for (int i = 0; i < 10; i++)
         {
-            byte data = reader.ReadByte();
+            if (!reader.TryReadByte(out byte data)) return false;
             value |= (ulong)(data & 0x7F) << (i * 7);
             if ((data & 0x80) == 0)
             {
