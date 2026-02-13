@@ -132,6 +132,9 @@ public sealed class ObjectNode : ICollectionNode, IEnumerable<INode>
 
     public bool TryRemove(int index, out INode? node) => data.Remove(index, out node);
 
-    public IEnumerator<INode> GetEnumerator() => data.Values.GetEnumerator();
-    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    public IEnumerator GetEnumerator() => data.GetEnumerator();
+
+    public IEnumerable<KeyValuePair<int, INode>> ToKeyValuePairs() => data;
+
+    IEnumerator<INode> IEnumerable<INode>.GetEnumerator() => data.Values.GetEnumerator();
 }
