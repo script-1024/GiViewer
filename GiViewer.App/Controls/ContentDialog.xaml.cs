@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace GiViewer.App.Controls;
 
-public partial class ContentDialog : UserControl
+public partial class ContentDialog : ContentControl
 {
     public ContentDialog()
     {
@@ -23,7 +23,7 @@ public partial class ContentDialog : UserControl
     {
         SetDialogKind(kind);
         tcs = new TaskCompletionSource<ContentDialogResult>();
-        TxtTitle.Text = App.Translate(Title, "Dialog.Title.Missing");
+        DialogTitle.Text = App.Translate(Title, "Dialog.Title.Missing");
         if (Details != null)
         {
             if (Details is string str)
