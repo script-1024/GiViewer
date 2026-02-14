@@ -8,8 +8,7 @@ public partial class EditorPage : Page
     public EditorPage()
     {
         InitializeComponent();
-        LocalizationProvider.Instance.LanguageChanged += OnLanguageChanged;
-        OnLanguageChanged();
+        LocalizationProvider.AddListener(OnLanguageChanged);
     }
 
     private void OnLanguageChanged()
