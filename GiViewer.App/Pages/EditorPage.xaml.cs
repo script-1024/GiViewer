@@ -1,3 +1,4 @@
+using GiViewer.App.Controls;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -28,12 +29,26 @@ public partial class EditorPage : Page
     private void MenuItem_Click(object sender, RoutedEventArgs e)
     {
         string tag = ((MenuItem)sender).Tag.ToString() ?? string.Empty;
+        var testDialog = new ContentDialog {
+            Title = "Title",
+            Details = "Description",
+            IsLightDismiss = true
+        };
+
         switch (tag)
         {
+            case "Menu.File.Open":
+                Editor.OpenFile();
+                break;
+
+            case "Menu.File.Close":
+                Editor.CloseFile();
+                break;
+
             case "Menu.File.Exit":
                 App.Window.Close();
                 break;
-
+                
             default:
                 break;
         }

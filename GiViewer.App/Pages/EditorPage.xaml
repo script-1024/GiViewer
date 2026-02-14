@@ -8,17 +8,24 @@
       mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800"
       Title="EditorPage">
 
-    <StackPanel>
-        <Menu Name="Menu" Margin="6, 0, 6, 0">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Name="Menu" Margin="6, 0, 6, 0">
             <MenuItem Tag="Menu.File">
                 <MenuItem Tag="Menu.File.New" Click="MenuItem_Click"/>
                 <MenuItem Tag="Menu.File.Open" Click="MenuItem_Click"/>
                 <MenuItem Tag="Menu.File.Save" Click="MenuItem_Click"/>
                 <MenuItem Tag="Menu.File.SaveAs" Click="MenuItem_Click"/>
                 <Separator/>
+                <MenuItem Tag="Menu.File.Close" Click="MenuItem_Click"/>
                 <MenuItem Tag="Menu.File.Exit" Click="MenuItem_Click"/>
             </MenuItem>
         </Menu>
-        <ctrl:Editor x:Name="EditorUI"/>
-    </StackPanel>
+
+        <ctrl:Editor Grid.Row="1" x:Name="Editor"/>
+    </Grid>
 </Page>
