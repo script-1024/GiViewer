@@ -169,6 +169,33 @@ namespace GiViewer.App.Resources.Languages {
         }
         
         /// <summary>
+        ///   查找类似 There is nothing here. 的本地化字符串。
+        /// </summary>
+        public static string Editor_Empty {
+            get {
+                return ResourceManager.GetString("Editor.Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Properties 的本地化字符串。
+        /// </summary>
+        public static string Editor_Property_Title {
+            get {
+                return ResourceManager.GetString("Editor.Property.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Root 的本地化字符串。
+        /// </summary>
+        public static string Editor_RootNode {
+            get {
+                return ResourceManager.GetString("Editor.RootNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Edit 的本地化字符串。
         /// </summary>
         public static string Menu_Edit {
@@ -183,6 +210,15 @@ namespace GiViewer.App.Resources.Languages {
         public static string Menu_File {
             get {
                 return ResourceManager.GetString("Menu.File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Close 的本地化字符串。
+        /// </summary>
+        public static string Menu_File_Close {
+            get {
+                return ResourceManager.GetString("Menu.File.Close", resourceCulture);
             }
         }
         
@@ -237,15 +273,6 @@ namespace GiViewer.App.Resources.Languages {
         public static string Misc_GiFiles {
             get {
                 return ResourceManager.GetString("Misc.GiFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Root 的本地化字符串。
-        /// </summary>
-        public static string Node_Root {
-            get {
-                return ResourceManager.GetString("Node.Root", resourceCulture);
             }
         }
     }

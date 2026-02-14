@@ -177,7 +177,16 @@
   <data name="Misc.GiFiles" xml:space="preserve">
     <value>千星沙箱檔案</value>
   </data>
-  <data name="Node.Root" xml:space="preserve">
+  <data name="Editor.RootNode" xml:space="preserve">
     <value>根節點</value>
+  </data>
+  <data name="Editor.Property.Title" xml:space="preserve">
+    <value>屬性</value>
+  </data>
+  <data name="Editor.Empty" xml:space="preserve">
+    <value>未開啟任何檔案。</value>
+  </data>
+  <data name="Menu.File.Close" xml:space="preserve">
+    <value>關閉</value>
   </data>
 </root>

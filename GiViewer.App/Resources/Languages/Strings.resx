@@ -177,7 +177,16 @@
   <data name="Misc.GiFiles" xml:space="preserve">
     <value>GI Files</value>
   </data>
-  <data name="Node.Root" xml:space="preserve">
+  <data name="Editor.RootNode" xml:space="preserve">
     <value>Root</value>
+  </data>
+  <data name="Editor.Property.Title" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="Editor.Empty" xml:space="preserve">
+    <value>There is nothing here.</value>
+  </data>
+  <data name="Menu.File.Close" xml:space="preserve">
+    <value>Close</value>
   </data>
 </root>

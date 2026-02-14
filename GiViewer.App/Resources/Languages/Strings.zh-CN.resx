@@ -160,7 +160,7 @@
     <value>文件</value>
   </data>
   <data name="Menu.File.Exit" xml:space="preserve">
-    <value>关闭</value>
+    <value>退出</value>
   </data>
   <data name="Menu.File.New" xml:space="preserve">
     <value>新建</value>
@@ -177,7 +177,16 @@
   <data name="Misc.GiFiles" xml:space="preserve">
     <value>千星沙箱文件</value>
   </data>
-  <data name="Node.Root" xml:space="preserve">
+  <data name="Editor.RootNode" xml:space="preserve">
     <value>根节点</value>
+  </data>
+  <data name="Editor.Property.Title" xml:space="preserve">
+    <value>属性</value>
+  </data>
+  <data name="Editor.Empty" xml:space="preserve">
+    <value>未开启任何文件。</value>
+  </data>
+  <data name="Menu.File.Close" xml:space="preserve">
+    <value>关闭</value>
   </data>
 </root>
